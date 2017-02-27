@@ -48,7 +48,12 @@ describe('LibraryService', () => {
   });
 
   it('checks if a book is already in the library', () => {
-    //TODO
+    expect(libraryService.books.length == 0);
+    let testBook = createBookFixture("hasbook-1");
+    expect(libraryService.hasBook(testBook) == false);
+    libraryService.addBook(createBookFixture(testBook));
+    expect(libraryService.books.length == 1);
+    expect(libraryService.hasBook(testBook) == true);
   });
 
   it('can save and load the books', () => {
