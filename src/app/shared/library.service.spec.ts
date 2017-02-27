@@ -32,9 +32,10 @@ describe('LibraryService', () => {
 
   it('can add a book to the library', () => {
     expect(libraryService.books.length == 0);
-    libraryService.addBook(createBookFixture("addbook-1"));
+    let bookToAdd = createBookFixture("addbook-1");
+    libraryService.addBook(createBookFixture(bookToAdd));
     expect(libraryService.books.length == 1);
-    expect(libraryService.hasBook("addbook-1") == true);
+    expect(libraryService.hasBook(bookToAdd) == true);
   });
 
   it('can remove a book to the library', () => {
@@ -42,9 +43,9 @@ describe('LibraryService', () => {
     let bookToRemove = createBookFixture("rembook-1");
     libraryService.addBook(bookToRemove);
     expect(libraryService.books.length == 1);
-    expect(libraryService.hasBook("rembook-1") == true);
+    expect(libraryService.hasBook(bookToRemove) == true);
     libraryService.removeBook(bookToRemove);
-    expect(libraryService.hasBook("rembook-1") == false);
+    expect(libraryService.hasBook(bookToRemove) == false);
   });
 
   it('checks if a book is already in the library', () => {
