@@ -58,6 +58,27 @@ describe('LibraryService', () => {
   });
 
   it('can save and load the books', () => {
-    //TODO
+    expect(libraryService.books.length == 0);
+    let bookToAdd1 = createBookFixture("addbook-1");
+    libraryService.addBook(createBookFixture(bookToAdd1));
+    let bookToAdd2 = createBookFixture("addbook-2");
+    libraryService.addBook(createBookFixture(bookToAdd2));
+    let bookToAdd3 = createBookFixture("addbook-3");
+    libraryService.addBook(createBookFixture(bookToAdd3));
+    expect(libraryService.books.length == 3);
+    spyOn(libraryService, 'save');
+    libraryService.save();
+    expect(libraryService.save).toHaveBeenCalled()
+    libraryService.removeBook(bookToAdd1);
+    libraryService.removeBook(bookToAdd2);
+    libraryService.removeBook(bookToAdd3);
+    expect(libraryService.books.length == 0);
+    spyOn(libraryService, 'load').and.returnValue(undefined);
+    libraryService.load();
+    expect(libraryService.load).toHaveBeenCalled()
+    expect(libraryService.books.length == 3);
+    expect(libraryService.hasBook(bookToAdd1) == true);
+    expect(libraryService.hasBook(bookToAdd2) == true);
+    expect(libraryService.hasBook(bookToAdd3) == true);
   });
 });
