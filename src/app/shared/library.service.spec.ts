@@ -31,7 +31,10 @@ describe('LibraryService', () => {
 
 
   it('can add a book to the library', () => {
-    //TODO
+    expect(libraryService.books.length == 0);
+    libraryService.addBook(createBookFixture("addbook-1"));
+    expect(libraryService.books.length == 1);
+    expect(libraryService.hasBook("addbook-1") == true);
   });
 
   it('can remove a book to the library', () => {
