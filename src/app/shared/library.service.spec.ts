@@ -27,15 +27,16 @@ describe('LibraryService', () => {
       providers: [LibraryService]
     });
     libraryService = TestBed.get(LibraryService);
+    libraryService.books = [];
   });
 
 
   it('can add a book to the library', () => {
-    expect(libraryService.books.length == 0);
+    expect(libraryService.books.length).toBe(0);
     let bookToAdd = createBookFixture("addbook-1");
-    libraryService.addBook(createBookFixture(bookToAdd));
-    expect(libraryService.books.length == 1);
-    expect(libraryService.hasBook(bookToAdd) == true);
+    libraryService.addBook(bookToAdd);
+    expect(libraryService.books.length).toBe(1);
+    expect(libraryService.hasBook(bookToAdd)).toBe(true);
   });
 
   it('can remove a book to the library', () => {
