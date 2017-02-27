@@ -38,7 +38,13 @@ describe('LibraryService', () => {
   });
 
   it('can remove a book to the library', () => {
-    //TODO
+    expect(libraryService.books.length == 0);
+    var bookToRemove = createBookFixture("rembook-1");
+    libraryService.addBook(bookToRemove);
+    expect(libraryService.books.length == 1);
+    expect(libraryService.hasBook("rembook-1") == true);
+    libraryService.removeBook(bookToRemove);
+    expect(libraryService.hasBook("rembook-1") == false);
   });
 
   it('checks if a book is already in the library', () => {
