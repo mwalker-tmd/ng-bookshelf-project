@@ -39,7 +39,7 @@ describe('LibraryService', () => {
 
   it('can remove a book to the library', () => {
     expect(libraryService.books.length == 0);
-    var bookToRemove = createBookFixture("rembook-1");
+    let bookToRemove = createBookFixture("rembook-1");
     libraryService.addBook(bookToRemove);
     expect(libraryService.books.length == 1);
     expect(libraryService.hasBook("rembook-1") == true);
